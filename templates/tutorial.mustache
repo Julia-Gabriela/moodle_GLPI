@@ -1,0 +1,59 @@
+{{!
+    @template local_glpisupport/tutorial
+    Authenticated tutorial. Context: portalurl, button labels/style, settingsurl, steps.
+}}
+<div class="local-glpisupport" id="glpisupport-tutorial" style="{{buttonstyle}}">
+    {{#settingsurl}}
+    <div class="glpisupport-admin-tools"><a href="{{settingsurl}}">{{#str}}configure, local_glpisupport{{/str}}</a></div>
+    {{/settingsurl}}
+    <section class="glpisupport-intro" aria-labelledby="glpisupport-title">
+        <p class="glpisupport-eyebrow">{{#str}}eyebrow, local_glpisupport{{/str}}</p>
+        <h2 id="glpisupport-title">{{pagetitle}}</h2>
+        <div class="glpisupport-richtext">{{{intro}}}</div>
+        {{#portalurl}}
+        <a id="glpisupport-main-button" class="glpisupport-button" href="{{portalurl}}" target="_blank" rel="noopener noreferrer"
+           aria-describedby="glpisupport-newtab">{{mainbuttonlabel}}</a>
+        <span id="glpisupport-newtab" class="glpisupport-newtab">{{#str}}newtab, local_glpisupport{{/str}}</span>
+        {{/portalurl}}
+        {{^portalurl}}<p>{{#str}}portalnotconfigured, local_glpisupport{{/str}}</p>{{/portalurl}}
+    </section>
+
+    <aside class="glpisupport-audience" aria-label="{{audiencetitle}}">
+        <strong>{{audiencetitle}}</strong>
+        <div class="glpisupport-richtext">{{{audiencetext}}}</div>
+    </aside>
+
+    <nav class="glpisupport-summary" aria-label="{{summarytitle}}">
+        <strong>{{summarytitle}}</strong>
+        <ol>
+            {{#steps}}<li><a href="#glpisupport-step-{{number}}">{{title}}</a></li>{{/steps}}
+        </ol>
+    </nav>
+
+    <div class="glpisupport-steps">
+        {{#steps}}
+        <section class="glpisupport-step" id="glpisupport-step-{{number}}" aria-labelledby="glpisupport-heading-{{number}}">
+            <h3 id="glpisupport-heading-{{number}}"><span class="glpisupport-number" aria-hidden="true">{{number}}</span>{{title}}</h3>
+            <div class="glpisupport-richtext">{{{body}}}</div>
+            {{#showimage}}
+            <figure class="glpisupport-figure">
+                <a href="{{image}}" target="_blank" rel="noopener noreferrer" class="glpisupport-image-link"
+                   aria-label="{{#str}}enlarge, local_glpisupport{{/str}}: {{title}} ({{#str}}newtab, local_glpisupport{{/str}})">
+                    <img src="{{image}}" alt="{{alt}}" loading="lazy" decoding="async">
+                </a>
+                <figcaption>{{imagecaption}}</figcaption>
+            </figure>
+            {{/showimage}}
+        </section>
+        {{/steps}}
+    </div>
+
+    <section class="glpisupport-tracking" aria-labelledby="glpisupport-tracking-title">
+        <h3 id="glpisupport-tracking-title">{{trackingtitle}}</h3>
+        <div class="glpisupport-richtext">{{{trackingbody}}}</div>
+    </section>
+    {{#portalurl}}
+    <a id="glpisupport-floating-button" class="glpisupport-button glpisupport-floating" href="{{portalurl}}"
+       target="_blank" rel="noopener noreferrer" aria-describedby="glpisupport-newtab" hidden>{{floatingbuttonlabel}}</a>
+    {{/portalurl}}
+</div>
